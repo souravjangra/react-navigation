@@ -3,18 +3,19 @@ import {
   ParamListBase,
   Route,
   TabNavigationState,
-  useTheme,
+  useTheme
 } from '@react-navigation/native';
 import * as React from 'react';
+import { View } from 'react-native';
 import { SceneRendererProps, TabView } from 'react-native-tab-view';
-
 import type {
   MaterialTopTabBarProps,
   MaterialTopTabDescriptorMap,
   MaterialTopTabNavigationConfig,
-  MaterialTopTabNavigationHelpers,
+  MaterialTopTabNavigationHelpers
 } from '../types';
 import MaterialTopTabBar from './MaterialTopTabBar';
+
 
 type Props = MaterialTopTabNavigationConfig & {
   state: TabNavigationState<ParamListBase>;
@@ -44,7 +45,11 @@ export default function MaterialTopTabView({
   const focusedOptions = descriptors[state.routes[state.index].key].options;
 
   return (
-    <TabView<Route<string>>
+    <View style={{
+      flex:1,
+      backgroundColor: focusedOptions.tabBarStyle?.backgroundColor ?? colors.background
+    }}>
+      <TabView<Route<string>>
       {...rest}
       onIndexChange={(index) =>
         navigation.dispatch({
@@ -71,5 +76,6 @@ export default function MaterialTopTabView({
         sceneContainerStyle,
       ]}
     />
+    </View>
   );
 }
