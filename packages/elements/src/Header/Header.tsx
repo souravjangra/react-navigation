@@ -2,14 +2,13 @@ import * as React from 'react';
 import { Animated, Platform, StyleSheet, View, ViewStyle } from 'react-native';
 import {
   useSafeAreaFrame,
-  useSafeAreaInsets
+  useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import type { HeaderOptions, Layout } from '../types';
 import getDefaultHeaderHeight from './getDefaultHeaderHeight';
 import HeaderBackground from './HeaderBackground';
 import HeaderShownContext from './HeaderShownContext';
 import HeaderTitle from './HeaderTitle';
-
 
 type Props = HeaderOptions & {
   /**
@@ -210,9 +209,12 @@ export default function Header(props: Props) {
       : customTitle;
 
   return (
-    <View style={{
-      backgroundColor: backgroundStyle.backgroundColor ?? 'white'
-    }}>
+    <View
+      style={{
+        backgroundColor:
+          (backgroundStyle as ViewStyle).backgroundColor ?? 'white',
+      }}
+    >
       <Animated.View
         pointerEvents="box-none"
         style={[

@@ -9,7 +9,6 @@ import {
 } from '@react-navigation/core';
 import { nanoid } from 'nanoid/non-secure';
 import * as React from 'react';
-
 import ServerContext from './ServerContext';
 import type { LinkingOptions } from './types';
 
@@ -461,7 +460,9 @@ export default function useLinking(
               // Ignore any errors from deep linking.
               // This could happen in case of malformed links, navigation object not being initialized etc.
               console.warn(
-                `An error occurred when trying to handle the link '${path}': ${e.message}`
+                `An error occurred when trying to handle the link '${path}': ${
+                  (e as Error).message
+                }`
               );
             }
           } else {

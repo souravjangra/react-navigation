@@ -6,7 +6,6 @@ import {
 } from '@react-navigation/core';
 import * as React from 'react';
 import { Linking, Platform } from 'react-native';
-
 import extractPathFromURL from './extractPathFromURL';
 import type { LinkingOptions } from './types';
 
@@ -189,7 +188,9 @@ export default function useLinking(
             // Ignore any errors from deep linking.
             // This could happen in case of malformed links, navigation object not being initialized etc.
             console.warn(
-              `An error occurred when trying to handle the link '${url}': ${e.message}`
+              `An error occurred when trying to handle the link '${url}': ${
+                (e as Error).message
+              }`
             );
           }
         } else {

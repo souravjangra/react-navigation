@@ -6,7 +6,7 @@ import {
   useTheme
 } from '@react-navigation/native';
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 import { SceneRendererProps, TabView } from 'react-native-tab-view';
 import type {
   MaterialTopTabBarProps,
@@ -43,11 +43,12 @@ export default function MaterialTopTabView({
   };
 
   const focusedOptions = descriptors[state.routes[state.index].key].options;
+  const tabBarStyle = focusedOptions.tabBarStyle as ViewStyle;
 
   return (
     <View style={{
       flex:1,
-      backgroundColor: focusedOptions.tabBarStyle?.backgroundColor ?? colors.background
+      backgroundColor: tabBarStyle.backgroundColor ?? colors.background
     }}>
       <TabView<Route<string>>
       {...rest}
